@@ -15,7 +15,7 @@ def upload():
     user_info = request.json
 
     if not user_info:
-        return jsonify({'message': '请求体中缺少用户信息！'}),400
+        return jsonify({'message': '请求错误'}),415
 
     success = UploadUserIdentificationService.upload(user_info)
 

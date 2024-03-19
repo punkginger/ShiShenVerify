@@ -1,4 +1,5 @@
 from app.models.users import Users
+from app import db
 
 class UploadUserIdentificationService:
     @staticmethod
@@ -16,14 +17,13 @@ class UploadUserIdentificationService:
             return False
 
         # 创建新的用户对象并添加到数据库中
-        user = User(
-            username=username,
-            fingerprint_image_url=fingerprint_image_url,
-            face_image_url=face_image_url,
-            voice_print_url=voice_print_url,
-            gait_near_url=gait_near_url,
-            gait_far_url=gait_far_url
-        )
+        user = Users()
+        user.username=username,
+        user.fingerprint_image_url=fingerprint_image_url,
+        user.face_image_url=face_image_url,
+        user.voice_print_url=voice_print_url,
+        user.gait_near_url=gait_near_url,
+        user.gait_far_url=gait_far_url
 
         # 添加到数据库并提交更改
         db.session.add(user)

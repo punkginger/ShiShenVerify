@@ -29,3 +29,8 @@
 
 使用apifox管理api，公开文档于此
 https://apifox.com/apidoc/shared-48e735ca-7888-4d61-854e-039a4cd559c2/api-156011616
+
+## 开发文档
+
+持续更新于个人博客中
+http://139.224.245.251/backDev/ShiShenVerify.html

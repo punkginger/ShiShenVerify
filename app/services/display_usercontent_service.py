@@ -2,18 +2,18 @@ from app.models.users import Users
 
 class DisplayUserContentService:
     @staticmethod
-    def get_users(page):
-        # 每页显示的记录数
-        per_page = 8
+    def get_users(page,per_page):
 
         # 计算偏移量
         offset = (page - 1) * per_page
 
         # 查询用户信息
-        users = Users.query.with_entities(Users.id, Users.username, Users.fingerprint_image_url, Users.voice_print_url, Users.voice_print_url, Users.gait_near_url, Users.gait_far_url).filter(Users.is_valid==1).offset(offset).limit(per_page).all()
-        
+        #users = Users.query.with_entities(Users.id, Users.username, Users.fingerprint_image_url, Users.voice_print_url, Users.voice_print_url, Users.gait_near_url, Users.gait_far_url).filter(Users.is_valid==1).offset(offset).limit(per_page).all()
+        users = Users.query.filter(Users.is_valid == 1).offset(offset).limit(per_page).all()
+        total_valid_users = Users.query.filter(Users.is_valid == 1).count()
+
         if not users:
-            return '没有用户信息！'
+            return '没有用户信息！',0
         
         # 格式化查询结果
         formatted_users = [{
@@ -26,4 +26,4 @@ class DisplayUserContentService:
             'gait_far_url': user.gait_far_url
         } for user in users]
 
-        return formatted_users
+        return formatted_users, total_valid_users

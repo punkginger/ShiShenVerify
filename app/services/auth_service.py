@@ -1,6 +1,7 @@
 from flask_jwt_extended import create_access_token
 from app.models import Admin
 
+
 class AuthService:
     @staticmethod
     def login(username, password):
@@ -11,6 +12,6 @@ class AuthService:
         if admin and admin.password == password:
             # 生成并返回访问令牌(Token)
             access_token = create_access_token(identity=admin.id)
-            return {'access_token': access_token,'message': '登录成功'}, 200
+            return {'access_token': access_token, 'message': '登录成功'}, 200
         else:
             return {'message': '用户名或密码错误'}, 401

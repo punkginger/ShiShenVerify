@@ -33,23 +33,3 @@ app.register_blueprint(interact_with_nano_blueprint)
 from app.models.admin import Admin
 from app.models.users import Users
 
-
-@socketio.on('connect')
-def handle_connect():
-    print('Client connected')
-
-
-@socketio.on('disconnect')
-def handle_disconnect():
-    print('Client disconnected')
-
-
-@socketio.on('message')
-def handle_message(data):
-    print(f"Received message from Nano: {data}")
-
-    # 在这里调用与 Nano 通信的业务逻辑，这里用一个简单的示例代替
-    result = {"integer_value": 42}
-
-    # 将结果返回给客户端
-    emit('message', result)

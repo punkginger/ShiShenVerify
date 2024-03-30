@@ -13,9 +13,15 @@ def unauthorized_callback(callback):
 
 @interact_with_nano_blueprint.route('/getFaceImageFromNano', methods=['GET'])
 @jwt_required()
-def get_face_image_from_nano(signal=1):
-    result = InteractWithNanoService.get_face_image_from_nano_service(signal)
-    if result is None:
-        return jsonify(message='后台交互失败'), 500
-    else:
-        return jsonify(result), 200
+def get_face_image_from_nano():
+    # 前端访问此接口时，由后端向nano传送一个信号量
+    signal = 1
+    try:
+        result = InteractWithNanoService.get_face_image_from_nano_service(signal)
+        if result is None:
+            return jsonify(message='后台交互失败'), 500
+        else:
+            return jsonify(result), 200
+    except Exception as e:
+        # 处理与 Nano 服务通信的异常
+        return jsonify(message='与 Nano 服务通信失败'), 504

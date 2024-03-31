@@ -32,7 +32,7 @@ web端（前、后端）均部署于jetson nano上
 
 在config.py中修改部分可修改参数，详细参数选项参见上述文件
 本项目初始版本的网络拓扑图如下
-![网络拓扑](D:\coding\proj\python\flaskProj\24jsjds\shishen_network.drawio.png)
+![网络拓扑](./shishen_network.drawio.png)
 
 ## api文档
 

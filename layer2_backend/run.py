@@ -10,7 +10,7 @@ app = Flask(__name__)
 results = {}
 
 @app.route('/api/verifyLayer2', methods=['GET'])
-async def get_voice():
+def get_voice():
     task_id = str(uuid.uuid4())
     thread = threading.Thread(target=layer2_verify, args=(task_id,))
     thread.start()

@@ -7,23 +7,32 @@
 2. 指纹识别
 3. 声纹识别
 4. 步态识别
-持续开发中
+web端（前、后端）均部署于jetson nano上
 
 ## 安装
 
 1. 克隆该仓库
-2. 使用 `pip install -r requirements.txt`安装所需依赖.
-3. 运行 `python run.py`以启动.
-4. （可选）运行 `./local_server/server.py` 以在本地启动一个http服务器，用于测试环境下的文件上传
+2. 查看config.py中的可修改选项，并进行自定义修改
+3. 使用 `pip install -r requirements.txt`安装所需依赖.
+4. 运行 `python run.py`以启动.
+
 
 ## 使用
 
 访问 `http://localhost:8000`.
-访问 `http://localhost:8001` 以访问测试用的本地http服务器
+
+### 识别
+逻辑上分为两层识别：
+1. 人脸识别与指纹识别
+2. 声纹识别与面部识别
+其中，识别层一所依赖的代码与计算全部位于jetson nano上，而识别层二所需要的的代码运行于一台位于本地子网的高性能计算机上，其所依赖的硬件位于一台同样处于本地子网的树莓派设备上
+因此，第二层识别需要web端发起请求后堵塞等待，手动启动二层识别的计算机上的脚本后，等待其结束识别过程
 
 ## 须知
 
 在config.py中修改部分可修改参数，详细参数选项参见上述文件
+本项目初始版本的网络拓扑图如下
+![网络拓扑](D:\coding\proj\python\flaskProj\24jsjds\shishen_network.drawio.png)
 
 ## api文档
 

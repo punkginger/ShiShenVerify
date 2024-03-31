@@ -13,14 +13,24 @@ def unauthorized_callback(callback):
 
 # 第一层识别：人脸 指纹 在本地（nano上实现）
 # 第二层识别：声纹 步态 （树莓派）
+'''
+nano部分：
+    class layer1()
+        run(self, mode)
+            # mode=1:带活体检测的人脸识别
+            # mode=2:指纹识别
+            # mode=3:人脸登记
+            # mode=4:指纹登记
+'''
+
 
 @interact_with_nano_blueprint.route('/getFaceImageFromNano', methods=['GET'])
 @jwt_required()
 def get_face_image_from_nano():
     # 前端访问此接口时，由后端向nano传送一个信号量
-    signal = 1
+    mode = 1
     try:
-        result = InteractWithNanoService.get_face_image_from_nano_service(signal)
+        result = InteractWithNanoService.get_face_image_from_nano_service(mode)
         if result is None:
             return jsonify(message='后台交互失败'), 500
         else:
@@ -33,9 +43,9 @@ def get_face_image_from_nano():
 @interact_with_nano_blueprint.route('/getFingerprintFromNano', methods=['GET'])
 @jwt_required()
 def get_fingerprint_from_nano():
-    signal = 1
+    mode = 2
     try:
-        result = InteractWithNanoService.get_fingerprint_from_nano_service(signal)
+        result = InteractWithNanoService.get_fingerprint_from_nano_service(mode)
         if result is None:
             return jsonify(message='后台交互失败'), 500
         else:

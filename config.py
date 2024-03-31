@@ -13,5 +13,4 @@ class Config:
     # 上传目录
     UPLOAD_FOLDER = os.path.join(os.getcwd(), 'loacl_server', 'upload')  # 上传文件的目录
 
-    # ws超时重传时间设置
-    WS_TIMEOUT_SECOND = 7
+

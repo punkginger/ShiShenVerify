@@ -11,7 +11,7 @@ def unauthorized_callback(callback):
     return jsonify(message='请先登录'), 401
 
 
-@upload_user_identification_blueprint.route('/upload', methods=['POST'])
+@upload_user_identification_blueprint.route('/api/upload', methods=['POST'])
 @jwt_required()
 def upload():
     user_info = request.json

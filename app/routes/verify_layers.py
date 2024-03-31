@@ -1,9 +1,9 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required
 from app import jwt
-from app.services.interact_with_nano_service import InteractWithNanoService
+from app.services.verify_layers_service import VerifyLayersService
 
-interact_with_nano_blueprint = Blueprint('interact_with_nano_blueprint', __name__)
+verify_layers_blueprint = Blueprint('verify_layers_blueprint', __name__)
 
 
 @jwt.unauthorized_loader
@@ -24,13 +24,13 @@ nano部分：
 '''
 
 
-@interact_with_nano_blueprint.route('/getFaceImageFromNano', methods=['GET'])
+@verify_layers_blueprint.route('/api/getFaceImage', methods=['GET'])
 @jwt_required()
-def get_face_image_from_nano():
+def get_face_image():
     # 前端访问此接口时，由后端向nano传送一个信号量
     mode = 1
     try:
-        result = InteractWithNanoService.get_face_image_from_nano_service(mode)
+        result = VerifyLayersService.verify_layer1_service(mode)
         if result is None:
             return jsonify(message='后台交互失败'), 500
         else:
@@ -40,12 +40,12 @@ def get_face_image_from_nano():
         return jsonify(message='与 Nano 服务通信失败'), 504
 
 
-@interact_with_nano_blueprint.route('/getFingerprintFromNano', methods=['GET'])
+@verify_layers_blueprint.route('/api/getFingerprint', methods=['GET'])
 @jwt_required()
-def get_fingerprint_from_nano():
+def get_fingerprint():
     mode = 2
     try:
-        result = InteractWithNanoService.get_fingerprint_from_nano_service(mode)
+        result = VerifyLayersService.verify_layer1_service(mode)
         if result is None:
             return jsonify(message='后台交互失败'), 500
         else:

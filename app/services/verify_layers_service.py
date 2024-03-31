@@ -1,6 +1,4 @@
-from app import socketio
-import threading
-from config import Config
+from packs_from_nano import layer1_nano_V2
 
 '''
 nano部分：
@@ -13,12 +11,11 @@ nano部分：
 '''
 
 
-class InteractWithNanoService:
-    @staticmethod
-    def get_face_image_from_nano_service(mode):
-
-        pass
+class VerifyLayersService:
 
     @staticmethod
-    def get_fingerprint_from_nano_service(mode):
-        pass
+    def verify_layer1_service(mode):
+        verify = layer1_nano_V2.layer1()
+        result = verify.run(mode)
+        return result
+

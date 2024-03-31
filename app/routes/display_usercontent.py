@@ -13,7 +13,7 @@ def unauthorized_callback(callback):
     return jsonify(message='请先登录'), 401
 
 
-@index_blueprint.route('/index', methods=['GET'])
+@index_blueprint.route('/api/index', methods=['GET'])
 @jwt_required()  # 使用 JWT 鉴权保护路由
 def get_index():
     # 获取页码，默认为第一页

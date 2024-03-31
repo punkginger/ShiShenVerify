@@ -14,7 +14,8 @@ web端（前、后端）均部署于jetson nano上
 1. 克隆该仓库
 2. 查看config.py中的可修改选项，并进行自定义修改
 3. 使用 `pip install -r requirements.txt`安装所需依赖.
-4. 运行 `python run.py`以启动.
+4. 运行 `python run.py`以启动部署在jetson nano上的web后端服务器.
+5. 在另一台计算机上运行`python .\layer2_backend\run.py`layer2_backend下的run.py以启动部署在计算机上的另一个web后端服务器
 
 
 ## 使用

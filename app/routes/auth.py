@@ -4,7 +4,7 @@ from app.services.auth_service import AuthService
 auth_blueprint = Blueprint('auth_blueprint', __name__)
 
 
-@auth_blueprint.route('/login', methods=['POST'])
+@auth_blueprint.route('/api/login', methods=['POST'])
 def login():
     username = request.json.get('username')
     password = request.json.get('password')

@@ -11,7 +11,7 @@ def unauthorized_callback(callback):
     return jsonify(message='请先登录'), 401
 
 
-@upload_file_blueprint.route('/file', methods=['POST'])
+@upload_file_blueprint.route('/api/file', methods=['POST'])
 @jwt_required()
 def upload():
     if 'file' not in request.files:

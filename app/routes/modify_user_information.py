@@ -11,7 +11,7 @@ def unauthorized_callback(callback):
     return jsonify(message='请先登录'), 401
 
 
-@modify_user_information_blueprint.route('/modify', methods=['POST'])
+@modify_user_information_blueprint.route('/api/modify', methods=['POST'])
 @jwt_required()
 def modify():
     if request.json:
@@ -31,7 +31,7 @@ def modify():
         return jsonify(message='用户信息修改失败'), 400
 
 
-@modify_user_information_blueprint.route('/delete', methods=['POST'])
+@modify_user_information_blueprint.route('/api/delete', methods=['POST'])
 @jwt_required()
 def delete():
     if request.json:
@@ -46,7 +46,7 @@ def delete():
         return jsonify(message='用户信息删除失败'), 400
 
 
-@modify_user_information_blueprint.route('/findById', methods=['GET'])
+@modify_user_information_blueprint.route('/api/findById', methods=['GET'])
 @jwt_required()
 def find_by_id():
     # 获取请求中的用户ID列表
@@ -70,7 +70,7 @@ def find_by_id():
         return jsonify(valid_users_info=result), 200
 
 
-@modify_user_information_blueprint.route('/findByName', methods=['GET'])
+@modify_user_information_blueprint.route('/api/findByName', methods=['GET'])
 @jwt_required()
 def find_by_name():
     if request.args:
